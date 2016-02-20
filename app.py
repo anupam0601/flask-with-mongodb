@@ -47,6 +47,14 @@ def home():
 
 time.sleep(2)
 '''
+
+
+@app.route('/welcome')
+@login_required
+def welcome():
+    return render_template('welcome.html')  # render a template
+
+
 #mongodb function to fetch data
 @app.route('/')
 @login_required
@@ -57,10 +65,7 @@ def todo():
    
 
 
-@app.route('/welcome')
-@login_required
-def welcome():
-    return render_template('welcome.html')  # render a template
+
 
 
 # route for handling the login page logic
@@ -74,7 +79,7 @@ def login():
         else:
             session['logged_in'] = True
             flash('You were logged in.')
-            return redirect(url_for('home'))
+            return redirect(url_for('welcome'))
     return render_template('login.html', error=error)
 
 
