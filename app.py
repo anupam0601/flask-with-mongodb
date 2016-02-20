@@ -12,13 +12,9 @@ from pymongo import MongoClient
 # create the application object
 app = Flask(__name__)
 
+# Providing the details for mongoclient and database
 client = MongoClient('localhost',27017)
 db = client.anupam
-
-
-
-
-
 
 # config
 app.secret_key = 'my precious'
@@ -51,8 +47,9 @@ def home():
 
 time.sleep(2)
 '''
-#mongodb function:::::
+#mongodb function to fetch data
 @app.route('/')
+@login_required
 def todo():
    _items = db.movie.find()
    items = [item for item in _items]  
